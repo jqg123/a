@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Validate me</title>
+</head>
+<body>
+At lease one piece of data has to come in from every input type.
+<form action = "form.html" method = "get"><br/>
+Name:<input type = "text" name = "fullname" value="Enter Full Name"/><br/>
+Gender:<br/>
+Male<input type = "radio" name = "gender" value="male"/>Female<input type = "radio" name = "gender" value="female"/><br/>
+Hobbies<br/>
+Baseball <input type = "checkbox" name = "hobbies[]" value = "baseball" />  
+Football <input type = "checkbox" name = "hobbies[]" value = "football" />  
+Hockey <input type = "checkbox" name = "hobbies[]" value = "hockey" /><br/>
+Favorite Show <select name = "show">
+<option value = "">Choose Below</option>
+<option value = "ATHF">Aqua Teen Hunger Force</option>
+<option value = "Family Guy">Family Guy</option>
+<option value = "Simpsons">Simpsons</option>
+</select><br/>
+Comments<br/>
+<textarea cols = "50" rows = "6" name = "comments" id="one">Enter Comments</textarea><br/>
+<input type = "submit" name = "submit" value = "enter me" onclick = "validate()"/>
+</form>
+<script>
+console.log(document.forms);
+/*console.log(document.getElementsByTagName("input")[0].checked);
+console.log(document.getElementsByTagName("input")[1].value);
+console.log(document.getElementsByTagName("input")[2].value);
+console.log(document.getElementsByTagName("input")[3].checked);
+console.log(document.getElementsByTagName("input")[4].value);
+console.log(document.getElementsByTagName("input")[5].value);
+console.log(document.getElementsByTagName("input"));
+
+console.log(document.getElementsByName("fullname").value);
+console.log(document.getElementsByName("gender"));
+console.log(document.getElementsByName("hobbies[]").length);
+
+console.log(document.getElementsByName("comments").innerHTML);
+
+console.log(document.getElementsByName("show"));
+console.log(document.getElementsByTagName("option"));
+*/
+console.log(document.getElementsByTagName("textarea"));
+console.log(document.getElementsByName("comments"));
+
+function validateName(name)
+{		if(name.value =="" || name.value =="Enter Full Name" ){
+		
+		return false
+		
+	}
+	return true
+}
+
+function validateRadio (radios,radioButton)
+{
+    for (i = 1; i < radios.length+1; ++ i)
+    {
+        if (radioButton [i].checked) return true;
+    }
+    return false;
+}
+function validateCheckBox (checkbox,checkboxes)
+{
+    for (i = 3; i < checkbox.length+3; ++ i)
+    {
+        if (checkboxes [i].checked) return true;
+    }
+    return false;
+}
+function validateDropDown (show)
+	{
+	
+    if (show[0].selected == true)
+   {
+    
+    return false
+   }
+   return true
+}
+function validateTextField(tb)
+	{
+
+if (tb.value=="" || tb.value=="Enter Comments"){
+			return false;
+	}
+	return true
+	}
+
+function validate() {
+	
+	var name = document.getElementsByTagName("input")[0];
+	var radios = document.getElementsByName("gender");
+	var radioButton = document.getElementsByTagName("input");
+	var checkbox = document.getElementsByName("hobbies[]");
+	var checkboxes = document.getElementsByTagName("input");
+	var show = document.getElementsByTagName("option");
+	var tb = document.getElementById("one");
+	
+	//name
+	if (validateName(name)==false){
+		alert('Name field is not filled out');
+
+	}
+	//radio button
+	 if(validateRadio (radios,radioButton)==false)
+    {
+        alert('M/F field is not filled out');
+    }
+
+	//checkbox
+	
+ if(validateCheckBox (checkbox,checkboxes)==false)
+    {
+        alert('checkbox field is not filled out');
+    }
+	
+	//dropdown
+	if(validateDropDown(show)==false)
+	{
+		alert("Please select a type of show");
+	}
+
+	
+	//textfield
+	if (validateTextField(tb)==false)
+	{
+		alert("please enter text");
+	}
+
+	return false;
+
+	
+	  else
+    {
+ 
+        alert('Everything is answered');
+        return false;
+       
+    }
+
+
+	
+
+}
+</script>
+
+
+
+
+
+
+</form>
+</body>
+</html>
